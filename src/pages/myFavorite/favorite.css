@@ -1,0 +1,140 @@
+.my_favorite {
+   width: 100%;
+   min-height: 100%;
+   display: flex;
+   flex-direction: column;
+   background: var(--cl7);
+   color: var(--cl1);
+   gap: 5vw;
+}
+
+.my_favorite>h1 {
+   position: sticky;
+   top: 0;
+   z-index: 99;
+   inline-size: 100%;
+   padding: 4% 0;
+   text-align: center;
+   background: #333;
+   font-size: var(--fs1);
+   border-radius: 0 0 30px 30px; 
+}
+
+/* ======== profil_card ====== */
+.fovorite_card {
+   width: 100%;
+   min-height: 80vh;
+   display: flex;
+   flex-direction: column;
+   background: var(--cl2);
+   padding: var(--pd4);
+   border-radius: 30px 30px 0 0;
+}
+
+.fovorite_item {
+   width: 100%;
+   padding: 2% 0;
+   display: flex;
+   align-items: center;
+   gap: var(--gap1);
+   border-bottom: 1px solid #333;
+}
+
+.fovorite_item:last-child {
+   border: none;
+}
+
+.fovorite_item>figure {
+   width: 20%;
+   height: 90px;
+   border-radius: 10px;
+   overflow: hidden;
+}
+
+.fovorite_item>figure>img {
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+}
+
+.res_raiting {
+   display: flex;
+   align-items: center;
+   gap: var(--gap4);
+   flex: 1;
+}
+
+.fovorite_item p {
+   font-size: var(--fs5);
+}
+
+.give_raiting {
+   display: flex;
+   align-items: center;
+   gap: var(--gap4);
+   font-size: var(--fs5);
+}
+
+.fovorite_item>button {
+   padding: 1.5% 3%;
+   border: none;
+   border-radius: 8px;
+   background: #ff8c00;
+   color: var(--cl1);
+   font-size: var(--fs6);
+}
+
+@media(max-width: 570px) {
+   .my_favorite {
+      gap: 8vw;
+   }
+
+   .my_favorite>h1 {
+      padding: 5% 0;
+      border-radius: 0 0 20px 20px;
+   }
+
+   .fovorite_card {
+      border-radius: 20px 20px 0 0;
+   }
+
+   #none {
+      display: none;
+   }
+
+   .res_raiting {
+      flex-direction: column;
+      align-items: flex-start;
+   }
+
+   .fovorite_item>figure {
+      width: 26%;
+      height: 80px;
+   }
+}
+
+@media(max-width: 450px) {
+   .my_favorite {
+      gap: 10vw;
+   }
+
+   .my_favorite>h1 {
+      padding: 7% 0;
+   }
+
+   .fovorite_item>figure {
+      width: 33%;
+      height: 70px;
+   }
+}
+
+@media(max-width: 360px) {
+   .my_favorite>h1 {
+      font-size: var(--fs3);
+   }
+
+   .fovorite_item>figure {
+      width: 33%;
+      height: 65px;
+   }
+}

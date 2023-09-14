@@ -1,0 +1,254 @@
+.my_orders {
+    padding: var(--pd2);
+    gap: var(--gap3);
+    color: var(--cl1);
+}
+
+.my_orders>pre {
+    inline-size: 100%;
+    border-bottom: 1px solid var(--cl3);
+    line-height: 2;
+    font-size: var(--fs2);
+    color: var(--cl1);
+}
+
+.my_orders,
+.orders_item {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.orders_item {
+    position: relative;
+    padding: var(--pd7);
+    gap: 5vw;
+    background: var(--cl4);
+    border-radius: 15px;
+}
+
+.my_orders .none:hover::after {
+    content: 'Bekor qilingan buyurtma';
+    color: #df2215;
+}
+
+.order_info {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    line-height: 2;
+    border-bottom: 1px solid var(--cl3);
+    font-size: var(--fs5);
+}
+
+.order_info>label {
+    display: flex;
+    align-items: center;
+    gap: var(--gap3);
+}
+
+.order_info>label>b {
+    width: 50px;
+    padding: 1.5% 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.orders_stution {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--gap3);
+
+    >span {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: var(--fs7);
+
+        >svg {
+            font-size: var(--fs1);
+            color: var(--cl8);
+        }
+    }
+}
+
+.orders_stution>p {
+    width: 100px;
+    height: 2px;
+    background: #aaaa;
+}
+
+/* ==============order body ================== */
+.order_body {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--gap3);
+}
+
+.order_body__item {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: var(--gap1);
+    background: var(--cl7);
+    font-size: var(--fs5);
+    border-radius: 15px;
+    overflow: hidden;
+
+    >img {
+        width: 12dvw;
+        height: 12dvw;
+        object-fit: cover;
+        border-radius: 15px;
+        border: 2px solid #edede9;
+        z-index: 99;
+    }
+
+    >figcaption {
+        display: flex;
+        align-items: center;
+        gap: var(--gap1);
+        color: var(--cl1);
+        flex: 1;
+
+        & pre>span {
+            color: var(--cl5);
+        }
+    }
+
+    >span {
+        padding-right: 5%;
+    }
+
+}
+
+.order_body__item>i {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding-left: 13dvw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: #ff0000da;
+    color: #fff;
+    font-weight: 300;
+
+    >b {
+        font-weight: 300;
+    }
+}
+
+.order_body>div {
+    inline-size: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    font-size: var(--fs4);
+    line-height: 2;
+    border-top: 1px solid var(--cl1);
+
+    & span {
+        color: var(--cl3);
+        font-weight: 600;
+    }
+
+    >b {
+        font-size: var(--fs7);
+        color: #ccc;
+    }
+}
+
+@media (max-width: 768px) {
+    .order_body__item>img {
+        width: 18dvw;
+        height: 18dvw;
+    }
+
+    .order_body__item>i {
+        padding-left: 20dvw;
+    }
+
+    .order_body>div {
+        font-size: var(--fs3);
+    }
+}
+
+@media (max-width: 500px) {
+    .order_body__item>img {
+        width: 25vw;
+        height: 25vw;
+    }
+
+    .order_body__item>i {
+        padding-left: 28vw;
+        font-size: var(--fs6);
+    }
+
+    .order_body__item>figcaption {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--gap4);
+
+        & pre {
+            display: flex;
+            gap: var(--gap4);
+        }
+    }
+
+
+    .order_info {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .orders_stution>p {
+        width: 60px;
+    }
+
+    .order_body>div {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+@media(max-width: 430px) {
+    .my_orders {
+        padding: 0;
+        gap: 30px;
+    }
+
+    .my_orders>pre {
+        padding: var(--pd2);
+        line-height: 1.4;
+    }
+
+    .orders_item {
+        border-radius: 0;
+    }
+}
+
+@media (max-width: 400px) {
+    .order_body__item>img {
+        width: 25dvw;
+        height: 25dvw;
+    }
+
+    .order_body__item>i {
+        padding-left: 27dvw;
+    }
+
+    .orders_stution>p {
+        width: 40px;
+    }
+}
