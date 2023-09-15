@@ -1,7 +1,10 @@
 export const CalculateTotalPrice = (cart) => {
   const totalPrice = cart?.reduce(
-    (accumulator, item) => accumulator + item?.price * item?.quantity + 5000,
+    (accumulator, item) => accumulator + item?.price * item?.quantity,
     0
   );
-  return totalPrice;
+
+  const discountedPrice = totalPrice * 0.1; // Aslında çıkan fiyatın %10'u
+
+  return totalPrice + discountedPrice;
 };

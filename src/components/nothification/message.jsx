@@ -27,7 +27,7 @@ export const Message = (props) => {
     <div
       className={open ? "message_body open" : "message_body"}
       style={message === 6 ? { background: "#ffa62b" } : {}}
-      onClick={setOpen(false)}
+      onClick={() => setOpen(false)}
     >
       <div className="message_content">
         {message === 1 ? (

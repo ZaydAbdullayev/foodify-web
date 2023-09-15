@@ -136,8 +136,8 @@ export const Cart = memo(({ setOpen }) => {
                   : { borderTop: "1px solid #3333334b" }
               }
             >
-              <p>Xizmat xaqi:</p>
-              <span>5 000 sum</span>
+              <p>Afitsant:</p>
+              <span>10%</span>
             </div>
           ) : (
             <figure className="empty_cart">

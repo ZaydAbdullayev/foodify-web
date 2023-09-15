@@ -3,6 +3,7 @@ import "./cProductCard.css";
 import { NumericFormat } from "react-number-format";
 import { enqueueSnackbar as es } from "notistack";
 import { ImgService } from "../../services/image.service";
+import { useNavigate } from "react-router-dom";
 import {
   useGetCartProductQuery,
   useAddCartMutation,
@@ -33,17 +34,22 @@ export const CatalogCard = memo(({ restaurantId, category }) => {
   const [addCart] = useAddCartMutation();
   const [addFavFood] = useAddFavFoodMutation();
   const [deleteFavFood] = useDeleteFavFoodMutation();
+  const navigate = useNavigate();
 
   const addToCart = async (item) => {
-    const { error, data } = await addCart(item);
-    if (error)
-      return es("Savatga qo'shishda muammo yuz berdi", {
-        variant: "warning",
-      });
-    if (data)
-      es("Mahsulot savatga muvoffaqiyatli qo'shildi!", {
-        variant: "success",
-      });
+    if (user_id) {
+      const { error, data } = await addCart(item);
+      if (error)
+        return es("Savatga qo'shishda muammo yuz berdi", {
+          variant: "warning",
+        });
+      if (data)
+        es("Mahsulot savatga muvoffaqiyatli qo'shildi!", {
+          variant: "success",
+        });
+    } else {
+      navigate("/not/allowed");
+    }
   };
 
   const updateCart = async (item) => {
@@ -56,21 +62,20 @@ export const CatalogCard = memo(({ restaurantId, category }) => {
 
     if (item?.quantity > 0) {
       const { error, data } = await updateCartById(Udata);
-      if (error)
-        return es("Savatga qo'shishda muammo yuz berdi", { variant: "error" });
+      if (error) return es("Xatolik yuz berdi", { variant: "error" });
       if (data)
-        es("Mahsulot savatga muvoffaqiyatli qo'shildi!", {
+        es("Mahsulot qo'shildi!", {
           variant: "success",
         });
     } else {
       setEffect(item.id);
       const { error, data } = await deleteCart(endpoint);
       if (error)
-        return es("Savatdan o'chirishda muammo yuz berdi", {
+        return es("Xatolik yuz berdi", {
           variant: "error",
         });
       if (data) {
-        es("Mahsulot savatdan o'chirildi!", { variant: "warning" });
+        es("Mahsulot o'chirildi!", { variant: "warning" });
       }
       if (
         cartProduct?.cartItems?.length === 1 &&
@@ -91,17 +96,17 @@ export const CatalogCard = memo(({ restaurantId, category }) => {
     if (state?.state === 1) {
       const { error, data } = await addFavFood(food_data);
       if (error)
-        return es("Yoqtirilganlarga qo'shishda muammo yuz berdi", {
+        return es("Xatolik yuz berdi", {
           variant: "error",
         });
       if (data)
-        es("Yoqtirilganlarga muvoffaqiyatli qo'shildi!", {
+        es("Yoqtirilganlarga qo'shildi!", {
           variant: "success",
         });
     } else {
       const { error, data } = await deleteFavFood(food_data);
       if (error)
-        return es("Yoqtirilganlardan o'chirishda muammo yuz berdi", {
+        return es("Xatolik yuz berdi", {
           variant: "error",
         });
       if (data) es("Yoqtiganlardan o'chirildi!", { variant: "warning" });

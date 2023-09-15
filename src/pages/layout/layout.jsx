@@ -25,11 +25,12 @@ export const Layout = () => {
     localStorage.removeItem("localUser");
   };
 
-  const clearStorage2 = () => {
-    localStorage.removeItem("noaccess");
-  };
-
   useLayoutEffect(() => {
+    const intervalId = setInterval(() => {
+      // Her bir zaman aralığında Local Storage'i temizle
+      clearStorage();
+    }, 1800000);
+
     if (user?.username) {
       const loginUser = async () => {
         const data = {
@@ -41,7 +42,6 @@ export const Layout = () => {
         await ApiService.fetching("register/token", { url: lc })
           .then((res) => {
             localStorage.setItem("localUser", JSON.stringify(data));
-            setTimeout(clearStorage, 1800000);
             navigate("/");
           })
           .catch((err) => console.log("xatolik"));
@@ -53,14 +53,14 @@ export const Layout = () => {
         JSON.stringify({ username: "Hisob yo'q" })
       );
     }
+
+    // Component unmount olduğunda interval'i temizle
+    return () => {
+      clearInterval(intervalId);
+    };
   }, [lc, lp, navigate, user]);
 
   useEffect(() => setOpen(false), [location]);
-  setTimeout(() => {
-    if (id) {
-      setTimeout(clearStorage2, 10000);
-    }
-  }, 2000);
 
   let startY = 0;
   const handleTouchStart = (e) => {

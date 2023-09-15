@@ -35,7 +35,7 @@
 
 .time {
     position: absolute;
-    top: -35px;
+    top: -40px;
     right: 50%;
     height: 30px;
     transform: translateX(50%);
@@ -239,17 +239,13 @@
 
 @media(max-width: 430px) {
     .my_orders {
-        padding: 0;
+        padding: 0 0 4%;
         gap: 30px;
     }
 
     .my_orders>pre {
         padding: var(--pd2);
         line-height: 1.4;
-    }
-
-    .orders_item {
-        border-radius: 0;
     }
 }
 
