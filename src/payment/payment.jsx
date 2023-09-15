@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useMemo } from "react";
 import "./payment.css";
 import "./pyment.media.css";
 import { enqueueSnackbar as es } from "notistack";
@@ -12,7 +12,6 @@ import {
   useUpdateCartByIdMutation,
 } from "../services/cart.service";
 import { useGetFavDataQuery } from "../services/fav.service";
-import { SiHomeadvisor } from "react-icons/si";
 import { MdDelete } from "react-icons/md";
 import { ImArrowLeft2 } from "react-icons/im";
 
@@ -24,8 +23,6 @@ export const Payment = () => {
     () => JSON?.parse(localStorage?.getItem("localUser")) || [],
     []
   );
-  const [write, setWrite] = useState(false);
-  const [adress_info, setAdress_info] = useState({});
   const user_id = user?.id;
   const id = useParams()?.id;
   const navigate = useNavigate();
@@ -37,17 +34,17 @@ export const Payment = () => {
   const endpoint = `empty/cart/${user_id}`;
 
   const payment_data = {
-    address: adress_info.home + "&" + user.username || "",
-    description: adress_info?.description || "",
-    padyezd: adress_info?.padez || "",
-    qavat: adress_info?.qavat || "",
+    address: user.username?.split("_").join(" ") || "",
+    description: "",
+    padyezd: "",
+    qavat: "",
     product_data: JSON.stringify(cart?.cartItems),
     payment: "token",
     price: total || 0,
     user_id: user_id || 0,
     restaurant_id: id,
-    latitude: "4567584985784938574934857",
-    longitude: "4567584985784938574934857",
+    latitude: "",
+    longitude: "",
   };
 
   const updateCart = async (item) => {
@@ -88,8 +85,6 @@ export const Payment = () => {
   };
 
   const resieveOrderS = async () => {
-    if (adress_info?.home === "")
-      return es("Adressni kiriting", { variant: "warning" });
     socket.emit("/order", payment_data);
     const { error, data } = await deleteCartById(endpoint);
     if (error) return es("Qandaydir muammo yuz berdi", { variant: "error" });
@@ -106,79 +101,6 @@ export const Payment = () => {
         </span>
         <h1>{shop?.innerData?.username?.split("_")?.join(" ")}</h1>
       </pre>
-      <div className="rigth_section">
-        <p>Yetakazish shartlari</p>
-        <div className="whose_order">
-          <button type="button" autoFocus>
-            Yetkazish <span>summasi</span>
-          </button>
-          <button type="button">
-            Boshqa odam uchun buyurtma <span>summasi</span>
-          </button>
-        </div>
-        <div
-          className={write ? "place_information write" : "place_information"}
-          onClick={() => setWrite(true)}
-        >
-          <div className="user_location">
-            <SiHomeadvisor style={{ fontSize: "var(--fs4)", color: "#fff" }} />
-            <select name="location">
-              <option value="value">Namangan</option>
-            </select>
-          </div>
-          <label>
-            <p>Uy/Ofis</p>
-            <input
-              type="text"
-              required
-              autoComplete="off"
-              onChange={(e) =>
-                setAdress_info({ ...adress_info, home: e.target.value })
-              }
-            />
-          </label>
-          <label>
-            <p>Podyez №:</p>
-            <input
-              type="number"
-              autoComplete="off"
-              onChange={(e) =>
-                setAdress_info({ ...adress_info, padez: e.target.value })
-              }
-            />
-          </label>
-          <label>
-            <p>Qavat №:</p>
-            <input
-              type="text"
-              autoComplete="off"
-              onChange={(e) =>
-                setAdress_info({ ...adress_info, qavat: e.target.value })
-              }
-            />
-          </label>
-          <label>
-            <p>buyurtma uchun izoh</p>
-            <input
-              type="text"
-              autoComplete="off"
-              onChange={(e) =>
-                setAdress_info({
-                  ...adress_info,
-                  description: e.target.value,
-                })
-              }
-            />
-          </label>
-        </div>
-        <div className="delivery_time">
-          <p>Yetkazib berish vaqti</p>
-          <select name="time">
-            <option value="time">Yetkazish: 20-30 daqiqa</option>{" "}
-            <option value="dhdsf">Bugun: 20-30 daqiqa</option>
-          </select>
-        </div>
-      </div>
       <div className="left_section">
         <p>
           Buyurtmangiz:{" "}

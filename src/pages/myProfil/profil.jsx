@@ -18,7 +18,7 @@ export const MyProfil = () => {
     <div className="my_profil">
       <div className="user_info">
         <h1 style={{ textTransform: "capitalize" }}>
-          {customer?.username || "Username"}
+          {customer?.username?.split("_").join(" ") || "Username"}
         </h1>
         <img src={default_img} alt="images" />
       </div>

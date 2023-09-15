@@ -25,11 +25,26 @@
     gap: 5vw;
     background: var(--cl4);
     border-radius: 15px;
+    margin-top: 25px;
 }
 
 .my_orders .none:hover::after {
     content: 'Bekor qilingan buyurtma';
     color: #df2215;
+}
+
+.time {
+    position: absolute;
+    top: -35px;
+    right: 50%;
+    height: 30px;
+    transform: translateX(50%);
+    padding: 1.5% 3%;
+    background: #ff9900;
+    font-weight: 700;
+    border-radius: 20px;
+    font-size: var(--fs5);
+    color: #fff;
 }
 
 .order_info {

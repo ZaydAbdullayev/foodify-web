@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./message.css";
 import io from "socket.io-client";
+// import { useSwipeable } from "react-swipeable";
 
 const socket = io("https://backup.foodify.uz");
 // const socket = io("http://localhost:80");
@@ -18,10 +19,15 @@ export const Message = (props) => {
     socket.off(`/get/message/${id}`);
   });
 
+  setTimeout(() => {
+    setOpen(false);
+  }, 10000);
+
   return (
     <div
       className={open ? "message_body open" : "message_body"}
       style={message === 6 ? { background: "#ffa62b" } : {}}
+      onClick={setOpen(false)}
     >
       <div className="message_content">
         {message === 1 ? (
@@ -39,15 +45,72 @@ export const Message = (props) => {
           </p>
         )}
       </div>
-      <button
-        onClick={() => setOpen(false)}
-        style={message === 6 ? { color: "#ffa62b" } : {}}
-      >
-        Ok
-      </button>
     </div>
   );
 };
+
+// export const App = () => {
+//   const [notifications, setNotifications] = useState([]);
+
+//   const addNotification = (message) => {
+//     const newNotification = {
+//       id: Date.now(),
+//       message: message,
+//     };
+
+//     setNotifications((prevNotifications) => [
+//       ...prevNotifications,
+//       newNotification,
+//     ]);
+
+//     setTimeout(() => {
+//       removeNotification(newNotification.id);
+//     }, 10000);
+//   };
+
+//   const removeNotification = (id) => {
+//     setNotifications((prevNotifications) =>
+//       prevNotifications.filter((n) => n.id !== id)
+//     );
+//   };
+
+//   return (
+//     <div className="app">
+//       <button onClick={() => addNotification("Bir bildirim metni")}>
+//         Bildirim Ekle
+//       </button>
+//       <div className="notification-container">
+//         {notifications.map((notification) => (
+//           <Notification
+//             key={notification.id}
+//             message={notification.message}
+//             onRemove={() => removeNotification(notification.id)}
+//           />
+//         ))}
+//       </div>
+//     </div>
+//   );
+// };
+
+// export const Notification = ({ message, onRemove }) => {
+//   const handlers = useSwipeable({
+//     onSwiped: (eventData) => {
+//       if (eventData.dir === "Right" || eventData.dir === "Left") {
+//         onRemove();
+//       }
+//     },
+//   });
+
+//   return (
+//     <div
+//       className="notification"
+//       {...handlers}
+//       onClick={onRemove}
+//     >
+//       {message}
+//     </div>
+//   );
+// };
 
 // function notifyMe() {
 //   if (!("Notification" in window)) {
