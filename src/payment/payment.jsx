@@ -81,6 +81,7 @@ export const Payment = () => {
       if (error) return es("Qandaydir muammo yuz berdi", { variant: "error" });
       if (data) es("Mahsulot savatdan o'chirildi!", { variant: "warning" });
       window.location.reload();
+      navigate("/all/foods");
     }
   };
 

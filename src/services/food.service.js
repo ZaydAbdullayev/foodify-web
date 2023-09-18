@@ -10,7 +10,7 @@ export const favFoodAPi = createApi({
     // add to cart all product "/add/toCart/:user_id/;id"
     addFavFood: builder.mutation({
       query: (body) => ({
-        url: "add/favFood",
+        url: "add/favFoods",
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -50,7 +50,7 @@ export const favFoodAPi = createApi({
     // delete cart path: "/delete/cart/:user_id/:id" (private) (DELETE)
     deleteFavFood: builder.mutation({
       query: (endpoint) => ({
-        url: `remove/food/${endpoint?.user_id}/${endpoint?.id}`,
+        url: `remove/favFoods/${endpoint?.user_id}/${endpoint?.id}`,
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${user?.token}`,

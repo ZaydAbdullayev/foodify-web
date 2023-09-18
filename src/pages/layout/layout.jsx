@@ -85,11 +85,9 @@ export const Layout = () => {
         className={
           location === "/all/foods"
             ? "navigator food"
-            : location.startsWith("/my/fav/")
+            : location.startsWith("/my/orders")
             ? "navigator like"
             : location.startsWith("/my/profile")
-            ? "navigator profil"
-            : location === "/my/orders"
             ? "navigator profil"
             : location === `/payment/${location.split("/").pop()}`
             ? "navigator card"
@@ -125,7 +123,6 @@ export const Layout = () => {
                   (location.startsWith("/map") && index === 0) ||
                   (location.startsWith("/my/fav") && index === 3) ||
                   (location.startsWith("/my/profile") && index === 4) ||
-                  (location === "/my/orders" && index === 4) ||
                   (location === `/payment/${location.split("/").pop()}` &&
                     index === 2)
                     ? "navigator_item active_menu"
